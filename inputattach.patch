@@ -1,0 +1,23 @@
+diff --git a/inputattach.c b/linuxconsoletools-1.5.1/utils/inputattach.c
+index ced9bc7..e5c00c6 100644
+--- a/inputattach.c
++++ b/linuxconsoletools-1.5.1/utils/inputattach.c
+@@ -50,6 +50,8 @@
+ #include <systemd/sd-daemon.h>
+ #endif
+ 
++#define SERIO_MICROTOUCH_ETP 0x41
++
+ static int readchar(int fd, unsigned char *c, int timeout)
+ {
+ 	struct timeval tv;
+@@ -867,6 +869,9 @@ static struct input_types input_types[] = {
+ { "--pulse8-cec",		"-pulse8-cec",	"Pulse Eight HDMI CEC dongle",
+ 	B9600, CS8,
+ 	SERIO_PULSE8_CEC,		0x00,	0x00,	0,	NULL },
++{ "--mtouch-etp",		"-mtouch-etp",	"MicroTouch (ETP-PB-031C-0349) touchscreen",
++	B9600, CS8 | CRTSCTS,
++	SERIO_MICROTOUCH_ETP,	0x00,	0x00,	0,	NULL },
+ { NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, NULL }
+ };
+ 
